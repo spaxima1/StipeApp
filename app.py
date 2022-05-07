@@ -47,3 +47,13 @@ def charge():
     idsTable.insert_one(idPayment)
 
     return jsonify(requestStripe.json())
+
+@app.route('/ids')
+def TablesID():
+    item_details=idsTable.find()
+    data={}
+    count=0
+    for item in item_details:
+        data[count]=item['id']
+        count+=1
+    return render_template('Tableids.html',data=data)
